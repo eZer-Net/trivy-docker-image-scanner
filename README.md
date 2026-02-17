@@ -7,7 +7,7 @@ Use cases:
 - **Local**: build images from *local* `Dockerfile` and scan them (list in `input_images_files.txt`)
 - **Both**: run both modes sequentially
 
-- [Документация на русском](docs/README_RU.md)
+[Документация на русском](docs/README_RU.md)
 
 ---
 
