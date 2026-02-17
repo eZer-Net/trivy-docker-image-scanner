@@ -29,6 +29,176 @@ SEVERITY_LEVELS = {
 
 DEFAULT_TRIVY_TIMEOUT = "10m"
 
+
+# ------------------------- I18N (RU / EN) -------------------------
+# NOTE: Only UI/output strings are localized. Scan logic is unchanged.
+
+I18N: Dict[str, Dict[str, str]] = {
+    "EN": {
+        "lang_prompt": "Select language (RU/EN): ",
+        "lang_invalid": "Invalid choice. Please type RU or EN.",
+        "bye": "\n👋 Bye",
+
+        "menu_select_mode": "\nSelect mode:",
+        "menu_opt_remote": "1. 📡 Scan remote Docker images (input_images.txt)",
+        "menu_opt_local": "2. 🔧 Build and scan local Dockerfiles (input_images_files.txt)",
+        "menu_opt_both": "3. 🧩 Both modes (remote + local)",
+        "menu_prompt": "\nSelect mode (1/2/3): ",
+        "menu_invalid": "❌ Invalid choice. Enter 1, 2, or 3.",
+
+        "file_not_found": "❌ File {path} not found",
+        "found_items": "📋 Found {count} {item_name} to scan",
+        "severity_level": "📊 Severity level: {level} (including {severities})",
+        "file_read_error": "❌ Error reading file {path}: {error}",
+
+        "item_images": "images",
+        "item_dockerfiles": "Dockerfiles",
+
+        "build_from": "  📦 Building image from: {path}",
+        "unknown_build_error": "Unknown build error",
+        "image_built": "  ✅ Image built: {name}",
+        "image_removed": "  🗑️  Image removed: {name}",
+
+        "trivy_db_prepare_failed_default": "Failed to prepare Trivy DB",
+        "trivy_db_cache_clear_failed": "Failed to clear DB cache: {error}",
+        "db_prepare_failed": "❌ Failed to prepare Trivy DB: {msg}",
+        "db_issue_detected_repair": "⚠️  Trivy DB problem detected (corruption/incomplete download). Running repair and retry.",
+        "db_repair_failed": "❌ DB repair failed: {msg}",
+        "scan_error": "❌ Scan error for {target}: {details}",
+        "trivy_json_read_error": "❌ Error reading Trivy JSON output: {error}",
+        "trivy_scan_failed_default": "Trivy scan failed",
+
+        "summary_title": "\n📊 COMPONENT TYPE SUMMARY:",
+        "summary_secrets_header": "\n🔐 SECRETS: {count} findings",
+        "summary_vulns_header": "\n{comp}: {count} vulnerabilities",
+        "summary_total": "\n📈 TOTAL: {vulns} vulnerabilities across {types} component types",
+        "summary_total_secrets": "🔐 SECRETS: {secrets} findings",
+
+        "scan_failed_short": "  ❌ Scan failed",
+        "scan_image_error": "Failed to scan image",
+
+        "create_input_images": "📝 Create input_images.txt, example:",
+        "create_input_dockerfiles": "📝 Create input_images_files.txt, example:",
+        "no_images": "❌ No images found to scan",
+        "no_dockerfiles": "❌ No Dockerfiles found to scan",
+
+        "start_remote_scan": "\n🚀 Starting scan of {total} remote images...",
+        "start_local_scan": "\n🚀 Starting build & scan of {total} Dockerfiles...",
+        "remote_jobs": "⚙️  Parallelism (remote jobs): {jobs}",
+        "local_jobs": "⚙️  Parallelism (local jobs): {jobs}",
+        "cache_dir": "📁 Trivy cache-dir: {path}",
+        "quick_fix": "💡 Quick manual fix: trivy clean --vuln-db --java-db  (or rm -rf .trivy_cache/db .trivy_cache/java-db)",
+
+        "dockerfile_not_found": "  ❌ Dockerfile not found",
+        "file_not_found_plain": "File not found",
+        "build_error_line": "  ❌ Build error (Time={time:.1f}s): {msg}",
+        "build_error_result": "Build error: {msg}",
+        "scanning_image": "  🔍 Scanning image...",
+        "scan_error_times": "  ❌ Scan error (Build={build:.1f}s, Scan={scan:.1f}s)",
+        "cleanup": "  🧹 Cleanup...",
+
+        "save_error": "❌ Error saving {path}: {error}",
+        "unknown_mode": "❌ Unknown mode",
+        "no_results_to_save": "❌ No results to save",
+
+        "exit_user": "\n\n👋 Exiting as requested by user",
+        "critical_error": "\n❌ Critical error: {error}",
+    },
+    "RU": {
+        "lang_prompt": "Select language (RU/EN): ",
+        "lang_invalid": "Неверный выбор. Введите RU или EN.",
+        "bye": "\n👋 Выход",
+
+        "menu_select_mode": "\nВыберите режим работы:",
+        "menu_opt_remote": "1. 📡 Сканировать удаленные Docker образы (input_images.txt)",
+        "menu_opt_local": "2. 🔧 Собрать и просканировать локальные Dockerfile (input_images_files.txt)",
+        "menu_opt_both": "3. 🧩 Оба режима (remote + local)",
+        "menu_prompt": "\nВыберите режим (1/2/3): ",
+        "menu_invalid": "❌ Неверный выбор. Введите 1, 2 или 3",
+
+        "file_not_found": "❌ Файл {path} не найден",
+        "found_items": "📋 Найдено {count} {item_name} для сканирования",
+        "severity_level": "📊 Уровень критичности: {level} (включая {severities})",
+        "file_read_error": "❌ Ошибка чтения файла {path}: {error}",
+
+        "item_images": "образов",
+        "item_dockerfiles": "Dockerfile",
+
+        "build_from": "  📦 Сборка образа из: {path}",
+        "unknown_build_error": "Неизвестная ошибка сборки",
+        "image_built": "  ✅ Образ собран: {name}",
+        "image_removed": "  🗑️  Образ удален: {name}",
+
+        "trivy_db_prepare_failed_default": "Не удалось подготовить Trivy DB",
+        "trivy_db_cache_clear_failed": "Не удалось очистить кэш DB: {error}",
+        "db_prepare_failed": "❌ Не удалось подготовить Trivy DB: {msg}",
+        "db_issue_detected_repair": "⚠️  Обнаружена проблема с Trivy DB (коррупция/недокачка). Выполняю repair и повтор.",
+        "db_repair_failed": "❌ Repair DB не удался: {msg}",
+        "scan_error": "❌ Ошибка сканирования {target}: {details}",
+        "trivy_json_read_error": "❌ Ошибка чтения JSON результата trivy: {error}",
+        "trivy_scan_failed_default": "Ошибка сканирования trivy",
+
+        "summary_title": "\n📊 СВОДКА ПО ТИПАМ КОМПОНЕНТОВ:",
+        "summary_secrets_header": "\n🔐 SECRETS (Секреты): {count} находок",
+        "summary_vulns_header": "\n{comp}: {count} уязвимостей",
+        "summary_total": "\n📈 ИТОГО: {vulns} уязвимостей в {types} типах компонентов",
+        "summary_total_secrets": "🔐 СЕКРЕТЫ: {secrets} находок",
+
+        "scan_failed_short": "  ❌ Ошибка при сканировании",
+        "scan_image_error": "Не удалось просканировать образ",
+
+        "create_input_images": "📝 Создайте файл input_images.txt, пример:",
+        "create_input_dockerfiles": "📝 Создайте файл input_images_files.txt, пример:",
+        "no_images": "❌ Не найдено образов для сканирования",
+        "no_dockerfiles": "❌ Не найдено Dockerfile для сканирования",
+
+        "start_remote_scan": "\n🚀 Начинаю сканирование {total} удаленных образов...",
+        "start_local_scan": "\n🚀 Начинаю сборку и сканирование {total} Dockerfile...",
+        "remote_jobs": "⚙️  Параллельность (remote jobs): {jobs}",
+        "local_jobs": "⚙️  Параллельность (local jobs): {jobs}",
+        "cache_dir": "📁 Trivy cache-dir: {path}",
+        "quick_fix": "💡 Быстрый фикс руками: trivy clean --vuln-db --java-db  (или rm -rf .trivy_cache/db .trivy_cache/java-db)",
+
+        "dockerfile_not_found": "  ❌ Dockerfile не найден",
+        "file_not_found_plain": "Файл не найден",
+        "build_error_line": "  ❌ Ошибка сборки (Time={time:.1f}s): {msg}",
+        "build_error_result": "Ошибка сборки: {msg}",
+        "scanning_image": "  🔍 Сканирование образа...",
+        "scan_error_times": "  ❌ Ошибка при сканировании (Build={build:.1f}s, Scan={scan:.1f}s)",
+        "cleanup": "  🧹 Очистка...",
+
+        "save_error": "❌ Ошибка сохранения {path}: {error}",
+        "unknown_mode": "❌ Неизвестный режим",
+        "no_results_to_save": "❌ Нет результатов для сохранения",
+
+        "exit_user": "\n\n👋 Выход по запросу пользователя",
+        "critical_error": "\n❌ Критическая ошибка: {error}",
+    },
+}
+
+LANG: str = "EN"
+
+def _t(key: str, **kwargs: Any) -> str:
+    lang_map = I18N.get(LANG.upper(), I18N["EN"])
+    template = lang_map.get(key, I18N["EN"].get(key, key))
+    try:
+        return template.format(**kwargs)
+    except Exception:
+        return template
+
+def _select_language_interactive() -> str:
+    # Per requirement: ask in English.
+    while True:
+        try:
+            choice = input(I18N["EN"]["lang_prompt"]).strip().upper()
+        except (KeyboardInterrupt, EOFError):
+            _stderr(I18N["EN"]["bye"])
+            sys.exit(0)
+        if choice in ("RU", "EN"):
+            return choice
+        _stderr(I18N["EN"]["lang_invalid"])
+
+
 def _now_iso() -> str:
     return datetime.now().isoformat()
 
@@ -126,23 +296,23 @@ class TrivyScanner:
         _stderr("=" * 60)
         _stderr("🔐 ADVANCED DOCKER IMAGES SCANNER")
         _stderr("=" * 60)
-        _stderr("\nВыберите режим работы:")
-        _stderr("1. 📡 Сканировать удаленные Docker образы (input_images.txt)")
-        _stderr("2. 🔧 Собрать и просканировать локальные Dockerfile (input_images_files.txt)")
-        _stderr("3. 🧩 Оба режима (remote + local)")
+        _stderr(_t("menu_select_mode"))
+        _stderr(_t("menu_opt_remote"))
+        _stderr(_t("menu_opt_local"))
+        _stderr(_t("menu_opt_both"))
 
         while True:
             try:
-                choice = input("\nВыберите режим (1/2/3): ").strip()
+                choice = input(_t("menu_prompt")).strip()
                 if choice == "1":
                     return "remote"
                 if choice == "2":
                     return "local"
                 if choice == "3":
                     return "both"
-                _stderr("❌ Неверный выбор. Введите 1, 2 или 3")
+                _stderr(_t("menu_invalid"))
             except (KeyboardInterrupt, EOFError):
-                _stderr("\n👋 Выход")
+                _stderr(_t("bye"))
                 sys.exit(0)
 
     def parse_input_file(self, file_path: str, mode: str) -> Tuple[int, List[str]]:
@@ -154,7 +324,7 @@ class TrivyScanner:
         severity_level = 4  # По умолчанию HIGH+
 
         if not os.path.exists(file_path):
-            _stderr(f"❌ Файл {file_path} не найден")
+            _stderr(_t("file_not_found", path=file_path))
             return severity_level, items
 
         try:
@@ -171,12 +341,12 @@ class TrivyScanner:
 
                     items.append(line)
 
-            mode_name = "образов" if mode == "images" else "Dockerfile"
-            _stderr(f"📋 Найдено {len(items)} {mode_name} для сканирования")
-            _stderr(f"📊 Уровень критичности: {severity_level} (включая {SEVERITY_LEVELS.get(severity_level, [])})")
+            mode_name = _t("item_images") if mode == "images" else _t("item_dockerfiles")
+            _stderr(_t("found_items", count=len(items), item_name=mode_name))
+            _stderr(_t("severity_level", level=severity_level, severities=SEVERITY_LEVELS.get(severity_level, [])))
 
         except Exception as e:
-            _stderr(f"❌ Ошибка чтения файла {file_path}: {e}")
+            _stderr(_t("file_read_error", path=file_path, error=e))
 
         return severity_level, items
 
@@ -216,23 +386,23 @@ class TrivyScanner:
         dockerfile_dir = os.path.dirname(dockerfile_path)
         dockerfile_name = os.path.basename(dockerfile_path)
 
-        _stderr(f"  📦 Сборка образа из: {dockerfile_path}")
+        _stderr(_t("build_from", path=dockerfile_path))
         # -q: минимальный вывод, быстрее и меньше нагрузки на stdout/stderr
         cmd = ["docker", "build", "-q", "-f", dockerfile_name, "-t", image_name, "."]
 
         rc, out, err = await self._run_proc(cmd, cwd=dockerfile_dir, timeout_s=1800, stdout_pipe=True, stderr_pipe=True)
         if rc != 0:
-            msg = (err.strip() or out.strip() or "Неизвестная ошибка сборки")
+            msg = (err.strip() or out.strip() or _t("unknown_build_error"))
             msg = "\n".join(msg.splitlines()[-30:])
             return False, msg
 
-        _stderr(f"  ✅ Образ собран: {image_name}")
+        _stderr(_t("image_built", name=image_name))
         return True, image_name
 
     async def remove_docker_image(self, image_name: str) -> None:
         cmd = ["docker", "rmi", "-f", image_name]
         await self._run_proc(cmd, timeout_s=300, stdout_pipe=False, stderr_pipe=False)
-        _stderr(f"  🗑️  Образ удален: {image_name}")
+        _stderr(_t("image_removed", name=image_name))
 
     
     # ------------------------- TRIVY DB (WARMUP / REPAIR) -------------------------
@@ -312,7 +482,7 @@ class TrivyScanner:
             if rc == 0 and self._cache_has_vuln_db():
                 self._db_ready = True
             else:
-                return False, (err.strip() or "Не удалось подготовить Trivy DB")
+                return False, (err.strip() or _t("trivy_db_prepare_failed_default"))
 
         # 3) Попытка скачать Java DB (если поддерживается), чтобы потом сканировать параллельно без гонок
         self._java_db_ready = self._cache_has_java_db()
@@ -342,7 +512,7 @@ class TrivyScanner:
             os.makedirs(os.path.join(self.cache_dir, "db"), exist_ok=True)
             os.makedirs(os.path.join(self.cache_dir, "java-db"), exist_ok=True)
         except Exception as e:
-            return False, f"Не удалось очистить кэш DB: {e}"
+            return False, _t("trivy_db_cache_clear_failed", error=e)
 
         # Сброс флагов
         self._db_ready = False
@@ -463,7 +633,7 @@ class TrivyScanner:
 
             try: os.unlink(tmp_path)
             except Exception: pass
-            return rc, (err.strip() or "Ошибка сканирования trivy")
+            return rc, (err.strip() or _t("trivy_scan_failed_default"))
 
         return 0, tmp_path
 
@@ -474,7 +644,7 @@ class TrivyScanner:
         # Важный preflight: DB должна быть подготовлена ДО параллельных сканов.
         ok, msg = await self.ensure_trivy_databases()
         if not ok:
-            _stderr(f"❌ Не удалось подготовить Trivy DB: {msg}")
+            _stderr(_t("db_prepare_failed", msg=msg))
             return None
 
         async def _do_scan() -> Tuple[int, str]:
@@ -502,15 +672,15 @@ class TrivyScanner:
 
         # Если DB сломалась/не докачалась (обычно из-за гонки при параллельных обновлениях) — чиним и повторяем 1 раз
         if rc != 0 and (_looks_like_db_issue(payload) or _looks_like_missing_db_path(payload)):
-            _stderr("⚠️  Обнаружена проблема с Trivy DB (коррупция/недокачка). Выполняю repair и повтор.")
+            _stderr(_t("db_issue_detected_repair"))
             ok2, msg2 = await self.repair_trivy_databases()
             if ok2:
                 rc, payload = await _do_scan()
             else:
-                _stderr(f"❌ Repair DB не удался: {msg2}")
+                _stderr(_t("db_repair_failed", msg=msg2))
 
         if rc != 0:
-            _stderr(f"❌ Ошибка сканирования {image_name_or_url}: {payload[:500]}")
+            _stderr(_t("scan_error", target=image_name_or_url, details=payload[:500]))
             return None
 
         json_path = payload
@@ -518,7 +688,7 @@ class TrivyScanner:
             with open(json_path, "r", encoding="utf-8", errors="replace") as f:
                 return json.load(f)
         except Exception as e:
-            _stderr(f"❌ Ошибка чтения JSON результата trivy: {e}")
+            _stderr(_t("trivy_json_read_error", error=e))
             return None
         finally:
             try:
@@ -656,7 +826,7 @@ class TrivyScanner:
 
     def generate_summary_report(self, statistics: Dict[str, Dict[str, int]]) -> str:
         lines: List[str] = []
-        lines.append("\n📊 СВОДКА ПО ТИПАМ КОМПОНЕНТОВ:")
+        lines.append(_t("summary_title"))
         lines.append("=" * 60)
 
         total_vulns = 0
@@ -667,7 +837,7 @@ class TrivyScanner:
             secret_total = sum(secret_stats.values())
             total_secrets = secret_total
             if secret_total > 0:
-                lines.append(f"\n🔐 SECRETS (Секреты): {secret_total} находок")
+                lines.append(_t("summary_secrets_header", count=secret_total))
                 for sev in ["CRITICAL", "HIGH", "MEDIUM", "LOW", "UNKNOWN"]:
                     if secret_stats.get(sev, 0) > 0:
                         count = secret_stats[sev]
@@ -682,7 +852,7 @@ class TrivyScanner:
             comp_total = sum(comp_stats.values())
             total_vulns += comp_total
             if comp_total > 0:
-                lines.append(f"\n{comp_type}: {comp_total} уязвимостей")
+                lines.append(_t("summary_vulns_header", comp=comp_type, count=comp_total))
                 for sev in ["CRITICAL", "HIGH", "MEDIUM", "LOW", "UNKNOWN"]:
                     if comp_stats.get(sev, 0) > 0:
                         count = comp_stats[sev]
@@ -691,9 +861,9 @@ class TrivyScanner:
                         lines.append(f"  {emoji} {sev}: {count} ({pct:.1f}%)")
 
         comp_types_count = len([k for k in statistics.keys() if k != "Secret"])
-        lines.append(f"\n📈 ИТОГО: {total_vulns} уязвимостей в {comp_types_count} типах компонентов")
+        lines.append(_t("summary_total", vulns=total_vulns, types=comp_types_count))
         if total_secrets > 0:
-            lines.append(f"🔐 СЕКРЕТЫ: {total_secrets} находок")
+            lines.append(_t("summary_total_secrets", secrets=total_secrets))
 
         return "\n".join(lines)
 
@@ -714,10 +884,10 @@ class TrivyScanner:
 
             scan_data = await self.scan_docker_image(image_url)
             if not scan_data:
-                _stderr("  ❌ Ошибка при сканировании")
+                _stderr(_t("scan_failed_short"))
                 return ({
                     "image": image_url,
-                    "error": "Не удалось просканировать образ",
+                    "error": _t("scan_image_error"),
                     "scan_timestamp": _now_iso(),
                     "scan_type": "remote",
                 }, defaultdict(lambda: defaultdict(int)))
@@ -752,25 +922,25 @@ class TrivyScanner:
     async def scan_remote_images(self) -> List[Dict[str, Any]]:
         input_file = os.path.join(self.script_dir, "input_images.txt")
         if not os.path.exists(input_file):
-            _stderr(f"❌ Файл {input_file} не найден")
-            _stderr("📝 Создайте файл input_images.txt, пример:")
+            _stderr(_t("file_not_found", path=input_file))
+            _stderr(_t("create_input_images"))
             _stderr("# severity=4\n# registry.example.com/image@sha256:....\n")
             return []
 
         severity_level, images = self.parse_input_file(input_file, "images")
         if not images:
-            _stderr("❌ Не найдено образов для сканирования")
+            _stderr(_t("no_images"))
             return []
 
         total = len(images)
-        _stderr(f"\n🚀 Начинаю сканирование {total} удаленных образов...")
-        _stderr(f"⚙️  Параллельность (remote jobs): {self.jobs_remote}")
-        _stderr(f"📁 Trivy cache-dir: {self.cache_dir}")
+        _stderr(_t("start_remote_scan", total=total))
+        _stderr(_t("remote_jobs", jobs=self.jobs_remote))
+        _stderr(_t("cache_dir", path=self.cache_dir))
 
         ok_db, msg_db = await self.ensure_trivy_databases()
         if not ok_db:
-            _stderr(f"❌ Не удалось подготовить Trivy DB: {msg_db}")
-            _stderr("💡 Быстрый фикс руками: trivy clean --vuln-db --java-db  (или rm -rf .trivy_cache/db .trivy_cache/java-db)")
+            _stderr(_t("db_prepare_failed", msg=msg_db))
+            _stderr(_t("quick_fix"))
             return []
 
         sem = asyncio.Semaphore(self.jobs_remote)
@@ -802,10 +972,10 @@ class TrivyScanner:
             _stderr(f"\n[{idx}/{total}] 🔧 {dockerfile_path}")
 
             if not os.path.exists(dockerfile_path):
-                _stderr("  ❌ Dockerfile не найден")
+                _stderr(_t("dockerfile_not_found"))
                 return ({
                     "dockerfile": dockerfile_path,
-                    "error": "Файл не найден",
+                    "error": _t("file_not_found_plain"),
                     "scan_timestamp": _now_iso(),
                     "scan_type": "local",
                 }, defaultdict(lambda: defaultdict(int)))
@@ -820,26 +990,26 @@ class TrivyScanner:
             ok, msg = await self.build_docker_image(dockerfile_path, image_name)
             build_dt = loop.time() - t_build0
             if not ok:
-                _stderr(f"  ❌ Ошибка сборки (Time={build_dt:.1f}s): {msg}")
+                _stderr(_t("build_error_line", time=build_dt, msg=msg))
                 return ({
                     "dockerfile": dockerfile_path,
-                    "error": f"Ошибка сборки: {msg}",
+                    "error": _t("build_error_result", msg=msg),
                     "scan_timestamp": _now_iso(),
                     "scan_type": "local",
                 }, defaultdict(lambda: defaultdict(int)))
 
             t_scan0 = loop.time()
-            _stderr("  🔍 Сканирование образа...")
+            _stderr(_t("scanning_image"))
             scan_data = await self.scan_docker_image(image_name)
             scan_dt = loop.time() - t_scan0
 
             try:
                 if not scan_data:
-                    _stderr(f"  ❌ Ошибка при сканировании (Build={build_dt:.1f}s, Scan={scan_dt:.1f}s)")
+                    _stderr(_t("scan_error_times", build=build_dt, scan=scan_dt))
                     return ({
                         "dockerfile": dockerfile_path,
                         "image": image_name,
-                        "error": "Не удалось просканировать образ",
+                        "error": _t("scan_image_error"),
                         "scan_timestamp": _now_iso(),
                         "scan_type": "local",
                     }, defaultdict(lambda: defaultdict(int)))
@@ -864,31 +1034,31 @@ class TrivyScanner:
                 return image_result, statistics
 
             finally:
-                _stderr("  🧹 Очистка...")
+                _stderr(_t("cleanup"))
                 await self.remove_docker_image(image_name)
 
     async def scan_local_dockerfiles(self) -> List[Dict[str, Any]]:
         input_file = os.path.join(self.script_dir, "input_images_files.txt")
         if not os.path.exists(input_file):
-            _stderr(f"❌ Файл {input_file} не найден")
-            _stderr("📝 Создайте файл input_images_files.txt, пример:")
+            _stderr(_t("file_not_found", path=input_file))
+            _stderr(_t("create_input_dockerfiles"))
             _stderr("# severity=4\n# /path/to/Dockerfile\n")
             return []
 
         severity_level, dockerfiles = self.parse_input_file(input_file, "files")
         if not dockerfiles:
-            _stderr("❌ Не найдено Dockerfile для сканирования")
+            _stderr(_t("no_dockerfiles"))
             return []
 
         total = len(dockerfiles)
-        _stderr(f"\n🚀 Начинаю сборку и сканирование {total} Dockerfile...")
-        _stderr(f"⚙️  Параллельность (local jobs): {self.jobs_local}")
-        _stderr(f"📁 Trivy cache-dir: {self.cache_dir}")
+        _stderr(_t("start_local_scan", total=total))
+        _stderr(_t("local_jobs", jobs=self.jobs_local))
+        _stderr(_t("cache_dir", path=self.cache_dir))
 
         ok_db, msg_db = await self.ensure_trivy_databases()
         if not ok_db:
-            _stderr(f"❌ Не удалось подготовить Trivy DB: {msg_db}")
-            _stderr("💡 Быстрый фикс руками: trivy clean --vuln-db --java-db  (или rm -rf .trivy_cache/db .trivy_cache/java-db)")
+            _stderr(_t("db_prepare_failed", msg=msg_db))
+            _stderr(_t("quick_fix"))
             return []
 
         sem = asyncio.Semaphore(self.jobs_local)
@@ -917,7 +1087,7 @@ class TrivyScanner:
                 json.dump(results, f, ensure_ascii=False, separators=(",", ":"))
             return True
         except Exception as e:
-            _stderr(f"❌ Ошибка сохранения {output_file}: {e}")
+            _stderr(_t("save_error", path=output_file, error=e))
             return False
 
     # ------------------------- RUN -------------------------
@@ -937,11 +1107,11 @@ class TrivyScanner:
             results_all = r1 + r2
             scan_type = "both"
         else:
-            _stderr("❌ Неизвестный режим")
+            _stderr(_t("unknown_mode"))
             return 2
 
         if not results_all:
-            _stderr("❌ Нет результатов для сохранения")
+            _stderr(_t("no_results_to_save"))
             return 1
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -955,17 +1125,38 @@ class TrivyScanner:
         _stdout(file_name)
         return 0
 
+
 def parse_args(argv: List[str]) -> argparse.Namespace:
     p = argparse.ArgumentParser(add_help=True)
-    p.add_argument("--mode", choices=["remote", "local", "both"], default=None, help="Режим работы (по умолчанию интерактивное меню)")
-    p.add_argument("--jobs-remote", type=int, default=2, help="Параллельность для remote-скана (по умолчанию 2)")
-    p.add_argument("--jobs-local", type=int, default=1, help="Параллельность для local (docker build + scan). По умолчанию 1")
-    p.add_argument("--trivy-timeout", type=str, default=DEFAULT_TRIVY_TIMEOUT, help=f"Timeout trivy (например 10m). По умолчанию {DEFAULT_TRIVY_TIMEOUT}")
+    p.add_argument("--lang", choices=["RU", "EN", "ru", "en"], default=None, help="UI language (RU/EN). If not set and running interactively, you will be prompted.")
+    p.add_argument("--mode", choices=["remote", "local", "both"], default=None, help="Mode (default: interactive menu)")
+    p.add_argument("--jobs-remote", type=int, default=2, help="Parallelism for remote scan (default: 2)")
+    p.add_argument("--jobs-local", type=int, default=1, help="Parallelism for local (docker build + scan) (default: 1)")
+    p.add_argument("--trivy-timeout", type=str, default=DEFAULT_TRIVY_TIMEOUT, help=f"Trivy timeout (e.g., 10m). Default: {DEFAULT_TRIVY_TIMEOUT}")
     return p.parse_args(argv)
 
+
+
 def main() -> None:
+    global LANG
     try:
         args = parse_args(sys.argv[1:])
+
+        # Language selection:
+        # - If --lang provided: use it
+        # - Else if interactive: ask (prompt is always English per requirement)
+        # - Else: fallback to env SCANNER_LANG or EN
+        lang_arg = (args.lang or "").strip().upper()
+        if lang_arg in ("RU", "EN"):
+            LANG = lang_arg
+        else:
+            if sys.stdin.isatty():
+                LANG = _select_language_interactive()
+            else:
+                LANG = (os.environ.get("SCANNER_LANG", "EN") or "EN").strip().upper()
+                if LANG not in ("RU", "EN"):
+                    LANG = "EN"
+
         scanner = TrivyScanner(
             mode=args.mode,
             jobs_remote=args.jobs_remote,
@@ -975,11 +1166,12 @@ def main() -> None:
         rc = asyncio.run(scanner.run_async())
         sys.exit(rc)
     except KeyboardInterrupt:
-        _stderr("\n\n👋 Выход по запросу пользователя")
+        _stderr(_t("exit_user"))
         sys.exit(0)
     except Exception as e:
-        _stderr(f"\n❌ Критическая ошибка: {e}")
+        _stderr(_t("critical_error", error=e))
         sys.exit(1)
 
 if __name__ == "__main__":
     main()
+
