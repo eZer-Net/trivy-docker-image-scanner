@@ -1,0 +1,9 @@
+# Уровень критичности: 1=UNKNOWN+, 2=LOW+, 3=MEDIUM+, 4=HIGH+, 5=CRITICAL
+severity=4
+
+# Docker образы для сканирования
+ghcr.io/grafana/k6-operator:runner-v1.2.0@sha256:59762540b8757e8f10eaecc7170d9eec14893bd8425e1c6f461e7b942e1b248d
+
+ghcr.io/grafana/k6-operator:starter-v1.2.0@sha256:75342ded9c0c7ed2f7207308ac07c15531ba4eccc9683ca6e866279aa7ba12d6
+
+ghcr.io/grafana/k6-operator:controller-v1.2.0@sha256:59b1e50606fa3d08ae8e1495afa07e97cd014b680ab06404e0455620eedf21d6

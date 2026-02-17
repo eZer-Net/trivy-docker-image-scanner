@@ -1,0 +1,5 @@
+# Уровень критичности: 1=UNKNOWN+, 2=LOW+, 3=MEDIUM+, 4=HIGH+, 5=CRITICAL
+severity=4
+
+# Пути к Dockerfile для сборки и сканирования
+/home/ezer/Documents/tools/Inner-perimeter/Docker/Python/Docker_files/Dockerfile
